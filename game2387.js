@@ -330,7 +330,7 @@ function stopGO() {
 	document.body.style.overscrollBehavior = "";
 	document.documentElement.style.overflow = "";
 	document.documentElement.style.touchAction = "";
-	ocument.removeEventListener('dblclick', preventZoom);
+	document.removeEventListener('dblclick', preventZoom);
 document.removeEventListener('click', preventDoubleTapZoom);
 	
 	// Restore viewport
