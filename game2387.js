@@ -535,7 +535,7 @@ function getOffset( el ) {    var _x = 0;    var _y = 0;   while( el && !isNaN( 
     plane.position.z = 0;
 plane.rotation.x = Math.PI / 2;
 	var materialPlane = new BABYLON.StandardMaterial("texturePlane", scene);
-	materialPlane.diffuseTexture = new BABYLON.Texture("/img/3dpane.png", scene);
+	materialPlane.diffuseTexture = new BABYLON.Texture("brokenstupidimage.png", scene);
 	 plane.material = materialPlane;
 
 var materials = new Array();
