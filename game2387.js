@@ -779,7 +779,25 @@ scene.beforeRender = function() {
 	ifps++;	if(ifps>60) ifps=1;
 	inaction=false;
 	for(key in godown) {
-	if(godown[key]) { if(box[key].position.y>-11) {inaction=true; box[key].position.y=box[key].position.y-1; box[key].material.alpha=box[key].material.alpha-0.07;} else godown[key]=false;}// box[key].rotation.y=box[key].rotation.y-Math.PI / 12;
+		
+if(godown[key]) { 
+    if(box[key].position.y > -11) {
+        inaction = true; 
+        var deltaTime = engine.getDeltaTime() / 1000;
+        box[key].position.y -= 69 * deltaTime;
+        box[key].material.alpha -= 0.21 * deltaTime;
+        
+        // Clamp position and alpha when reaching or passing the end point
+        if(box[key].position.y <= -11) {
+            box[key].position.y = -11;
+            box[key].material.alpha = 0.3; // Adjust this value for desired dim effect (0.3 = slightly visible)
+        }
+    } else {
+        godown[key] = false;
+    }
+}
+
+//box[key].rotation.y=box[key].rotation.y-Math.PI / 12;
 	}
         var textureContext = dynamicTexture.getContext();
         var size = dynamicTexture.getSize();
