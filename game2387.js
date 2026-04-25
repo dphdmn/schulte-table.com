@@ -246,7 +246,7 @@ function startGO() {
 		viewportMeta.name = 'viewport';
 		document.head.appendChild(viewportMeta);
 	}
-	viewportMeta.content = 'width=device-width, initial-scale=1.6, maximum-scale=1.6, user-scalable=no';
+	viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
 	
 	// Prevent pull-to-refresh and rubber-banding
 	document.addEventListener('touchmove', preventScroll, { passive: false });
