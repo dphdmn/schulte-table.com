@@ -225,7 +225,35 @@ function startGO() {
 	if(mode=="home") {mode="react";	 $('.nav-tabs a[href="#' + mode + '"]').tab('show');}
  	hidemem = true;
 	showmem = true;
+	
+		// Prevent all scrolling, zooming, and panning
 	document.body.style.overflow = "hidden";
+	document.body.style.position = "fixed";
+	document.body.style.width = "100%";
+	document.body.style.height = "100%";
+	document.body.style.touchAction = "none";
+	document.body.style.userSelect = "none";
+	document.body.style.webkitUserSelect = "none";
+	document.body.style.webkitTouchCallout = "none";
+	document.body.style.overscrollBehavior = "none";
+	document.documentElement.style.overflow = "hidden";
+	document.documentElement.style.touchAction = "none";
+	
+	// Prevent zoom via meta viewport
+	let viewportMeta = document.querySelector('meta[name="viewport"]');
+	if (!viewportMeta) {
+		viewportMeta = document.createElement('meta');
+		viewportMeta.name = 'viewport';
+		document.head.appendChild(viewportMeta);
+	}
+	viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+	
+	// Prevent pull-to-refresh and rubber-banding
+	document.addEventListener('touchmove', preventScroll, { passive: false });
+	document.addEventListener('gesturestart', preventGesture, false);
+	document.addEventListener('gesturechange', preventGesture, false);
+	document.addEventListener('gestureend', preventGesture, false);
+	
 	num = numorig.slice();
 	arrNum = new Array();
 	arrTime = new Array();
@@ -256,12 +284,48 @@ function startGO() {
 	context2.fillText("Score:", 310, 30);
 	window.scrollTo(0,0);
 }
+
+// Helper functions for gesture prevention
+function preventScroll(e) {
+	
+}
+
+function preventGesture(e) {
+	e.preventDefault();
+}
+
 window.onscroll=function () { if(runningGO) {window.scrollTo(0,0); return;} }
 function stopGO() {
 	if(text=="60.000" || expect==0 || expect == 26 || mode == "home" || text=="0") {} else {
 		console.log("try to cheat? why? please, play fair!");
 		return;
   }
+  
+  // Restore scrolling and zoom
+	document.body.style.overflow = "auto";
+	document.body.style.position = "";
+	document.body.style.width = "";
+	document.body.style.height = "";
+	document.body.style.touchAction = "";
+	document.body.style.userSelect = "";
+	document.body.style.webkitUserSelect = "";
+	document.body.style.webkitTouchCallout = "";
+	document.body.style.overscrollBehavior = "";
+	document.documentElement.style.overflow = "";
+	document.documentElement.style.touchAction = "";
+	
+	// Restore viewport
+	let viewportMeta = document.querySelector('meta[name="viewport"]');
+	if (viewportMeta) {
+		viewportMeta.content = 'width=device-width, initial-scale=1.0';
+	}
+	
+	// Remove event listeners
+	document.removeEventListener('touchmove', preventScroll);
+	document.removeEventListener('gesturestart', preventGesture);
+	document.removeEventListener('gesturechange', preventGesture);
+	document.removeEventListener('gestureend', preventGesture);
+  
 	hideTime();
 	hidemem=false;
 	box[0].scaling.z = 1;
