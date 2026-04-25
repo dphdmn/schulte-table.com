@@ -1,119 +1,17 @@
 function login(action) {
-//	if(text=="60.000") return;
-	var dt = new Date();
-	xmlhttp.open("POST", ip+"/login.php?t="+parseInt(dt.getHours() + ((dt.getMinutes() < 10) ? "0" : "") + dt.getMinutes()+dt.getSeconds()), true);
-	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=Windows-1251");
-	xmlhttp.onreadystatechange=function(){
-	  if (xmlhttp.readyState == 4)  {
-        	if (xmlhttp.status == 200) {
-			arrresp = xmlhttp.responseText.split("~");
-			inuser = arrresp[0];
-			if(fb_id=="") document.getElementById("userdiv").innerHTML = inuser;
-			if(inuser=="Anonymous") {
 
-				refr("no");
-				if(arrresp[1]) {
-					document.getElementById("logininfdiv").innerHTML = "<font color=red>"+arrresp[1]+"</font><br>you can enter email address to be able to restore password.<br> <input type=input id='email' class='span4' name='email' placeholder='Email'><br><a data-toggle='modal' href='#' onclick='register();' class='btn btn-primary btn-large' id=register >REGISTER</a>";
-				} else {
-					document.getElementById("logininfdiv").innerHTML = "<font color=red>invalid username or password</font><br>you can enter email address to be able to restore password.<br> <input type=input id='email' class='span4' name='email' placeholder='Email'><br><a data-toggle='modal' href='#' onclick='register();' class='btn btn-primary btn-large' id=register >REGISTER</a>";
-				}
-			} else {
-				document.getElementById("closeloginw").click();
-				refr("no");
-//        			$('#windowTitleDialog').modal('show');
-	
-			}
-	}}}
-	switch(action) {
-		case 'login':
-			xmlhttp.send("action="+action+"&username="+document.getElementById("username").value+"&password="+document.getElementById("password").value);
-		        break;
-		case 'register':
-			xmlhttp.send("action="+action+"&username="+document.getElementById("username").value+"&password="+document.getElementById("password").value+"&email="+document.getElementById("email").value);
-		        break;
-		default:
-			xmlhttp.send("action="+action);
-	}
 }
 var bestscore="";
 var score100="";
 var scoretext="1'st:"+bestscore+" 100's:"+score100;
 
 function refr(dosend) {
-//	if(text=="60.000") return;
-//	alert(fb_id);
-	var dt = new Date();
-	if(fb_id=="") dataphp="data.php"; else dataphp="data_fb.php";
-	xmlhttp.open("POST", ip+"/"+dataphp+"?t="+parseInt(dt.getHours() + ((dt.getMinutes() < 10) ? "0" : "") + dt.getMinutes()+dt.getSeconds()), true);
-	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=Windows-1251");
-	xmlhttp.onreadystatechange=function(){
-	  if (xmlhttp.readyState == 4)  {
-        	if (xmlhttp.status == 200) {
-	ifps = 0;
-	xfps = 0;
-        document.getElementById('navchart').href="/chart.php?mode="+((mode=="home")?"react":mode)+"&id="+fb_id;
-			var responsestr = xmlhttp.responseText;
-//			document.getElementById("divdata"+mode).innerHTML = xmlhttp.responseText;
-			if(responsestr.split("~")[0]=="timeout" && mode !="home") {
-				//alert("timeout! please relogin!");
-//				    $(window).load(function(){
-        $('#windowTitleDialog').modal('show');
-  //  });
-
-percentstr=responsestr.split("~")[2];
-aprogress=responsestr.split("~")[3];
-bestscore=responsestr.split("~")[4].split(";")[0];
-score100=responsestr.split("~")[4].split(";")[1];
-scoretext="1'st:"+bestscore+" 100's:"+score100;
-responsestr=responsestr.split("~")[1];
-} else if(mode=="home" && responsestr.split("~").length>4) {
-percentstr=responsestr.split("~")[2];
-aprogress=responsestr.split("~")[3];
-bestscore=responsestr.split("~")[4].split(";")[0];
-score100=responsestr.split("~")[4].split(";")[1];
-scoretext="1'st:"+bestscore+" 100's:"+score100;
-responsestr=responsestr.split("~")[1];
-} else  {
-percentstr=responsestr.split("~")[1];
-aprogress=responsestr.split("~")[2];
-bestscore=responsestr.split("~")[3].split(";")[0];
-score100=responsestr.split("~")[3].split(";")[1];
-scoretext="1'st:"+bestscore+" 100's:"+score100;
-responsestr=responsestr.split("~")[0];
-}
-
-	if(mode=="light" || mode=="orig" || mode=="light_r" || mode=="orig_r" || mode=="react" || mode=="memory") {
-		document.getElementById('percentdiv').innerHTML = percentstr+"%";
-		document.getElementById('progresstable').innerHTML = aprogress;
-		$(function() {$("#percentdiv").css("width", percentstr+"%");});
-		
-		
-	} else {
-		document.getElementById('percentdiv').innerHTML = percentstr+"%";
-		document.getElementById('progresstable').innerHTML = aprogress;
-        	$(function() {$("#percentdiv").css("width", percentdiv.innerHTML);});
-	}
-        BABYLON.Tools.QueueNewFrame(renderLoop);
-	}}}
-	if(dosend=="no") {
-		//xmlhttp.send("TZ="+TZ+"&mode="+mode+"&fb_id="+fb_id);
-		// Print to left side instead
-		//printScoreToLeftSide(TZ, mode, fb_id, null, null);
-	} else {
-		if(fb_id=="") {
-			//xmlhttp.send("TZ="+TZ+"&score="+text+"&mode="+mode+"&inuser="+document.getElementById("userdiv").innerHTML);
-			// Print to left side instead
-			if (mode !== "home" && text !== 0){
-				console.log(text);
-			     printScoreToLeftSide(TZ, mode, null, text, "anon");
-			}
-		} else {
-			//xmlhttp.send("TZ="+TZ+"&score="+text+"&mode="+mode+"&fb_id="+fb_id+"&fb_name="+fb_name);
-			// Print to left side instead
-			//printScoreToLeftSide(TZ, mode, fb_id, text, fb_name);
-		}
-	}
+	document.body.style.overflow = "auto";
 	
+	if(fb_id=="" && mode !== "home" && text !== 0){
+		console.log(text);
+		printScoreToLeftSide(TZ, mode, null, text, "anon");
+	}
 }
 
 
@@ -312,7 +210,7 @@ function fixTime(){ arrTime[expect]=text-lastTime; lastTime=text;}
 
 function drawTime() {
 	document.getElementById("chart_div").style.display="inline";
-	document.getElementById("chart_div").style.left = document.getElementById('renderCanvas').getBoundingClientRect().left+window.scrollX+"px";
+	//document.getElementById("chart_div").style.left = document.getElementById('renderCanvas').getBoundingClientRect().left+window.scrollX+"px";
 	drawDualY();
 
 }
@@ -327,6 +225,7 @@ function startGO() {
 	if(mode=="home") {mode="react";	 $('.nav-tabs a[href="#' + mode + '"]').tab('show');}
  	hidemem = true;
 	showmem = true;
+	document.body.style.overflow = "hidden";
 	num = numorig.slice();
 	arrNum = new Array();
 	arrTime = new Array();
@@ -345,7 +244,10 @@ function startGO() {
 	expect = 1;
 	if(mode=="light_r" || mode=="orig_r") expect=25;
 	runningGO = true;
-	if(mode=="react") {box[1].material=getRedMaterial();} 
+	if(mode=="react") {
+    if (box[1].material) box[1].material.dispose();
+    box[1].material=getRedMaterial();
+}
 	date1 = new Date();
 	godown = new Array();
         context2.clearRect(0,0,420,40);
@@ -372,7 +274,7 @@ function stopGO() {
 		document.getElementById("brand").innerHTML="<span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span> "+back_str;
 		document.getElementById("hint_div").innerHTML=descr[mode];
                 document.getElementById("hint_div").style.display="inline";
-		document.getElementById("hint_div").style.left = document.getElementById('renderCanvas').getBoundingClientRect().left+window.scrollX+"px";
+		//document.getElementById("hint_div").style.left = document.getElementById('renderCanvas').getBoundingClientRect().left+window.scrollX+"px";
 		hideMenu();
 		if(runningGO) drawTime();
 	}
@@ -470,7 +372,10 @@ function bornbox(text,posx,posz) {
             textureContext2.restore();
           
             dynamicTexture2.update();
-            box[BOX_ID].material = material3;
+            if (box[BOX_ID].material) {
+    box[BOX_ID].material.dispose();
+}
+box[BOX_ID].material = material3;
 	    box[BOX_ID].position.x=posx;
 	    box[BOX_ID].position.z=posz;
 	    box[BOX_ID].position.y=0;
@@ -501,7 +406,10 @@ function bornbox(text,posx,posz) {
             textureContext2.restore();
           
             dynamicTexture2.update();
-            box[BOX_ID].material = material2;
+            if (box[BOX_ID].material) {
+    box[BOX_ID].material.dispose();
+}
+box[BOX_ID].material = material2;
 	    box[BOX_ID].position.x=posx;
 	    box[BOX_ID].position.z=posz;
 	    box[BOX_ID].position.y=0;
@@ -704,6 +612,14 @@ canvas.addEventListener("click", function (evt) {
 });
 
 canvas.addEventListener("pointerdown", function (evt) {
+	if(mode=="orig" || mode=="orig_r") {
+	// Reset all boxes y position to original
+for(var i = 1; i <= 25; i++) {
+    if(box[i]) {
+        box[i].position.y = 0;
+    }
+}
+	}
    // We try to pick an object
     ismousedown=true;
 	scored = 0;
@@ -742,7 +658,10 @@ canvas.addEventListener("pointerdown", function (evt) {
 		if(expect == pickResult.pickedMesh.id.substr(4)) {allowclick=true; fixTime(); expect--;}
 		if(expect==0) {stopGO(); expect=25;}
 	    } else {
-		if(expect == pickResult.pickedMesh.id.substr(4)) {allowclick=true; fixTime(); expect++; scored = 1; if(mode=="react" && expect<26) box[expect].material=getRedMaterial();}
+		if(expect == pickResult.pickedMesh.id.substr(4)) {allowclick=true; fixTime(); expect++; scored = 1; if(mode=="react" && expect<26) {
+    if (box[expect].material) box[expect].material.dispose();
+    box[expect].material=getRedMaterial();
+}}
 		if(expect==26) {stopGO(); expect=1;}
 	    }
 	}
@@ -765,14 +684,15 @@ canvas.addEventListener("pointerdown", function (evt) {
 //    if(pickResult.pickedMesh && allowclick) pickResult.pickedMesh.position.y=-0.5;
 },false);
 
-canvas.addEventListener("pointermove", function(evt) {
+canvas.addEventListener("pointerrawupdate", function(evt) {
+	//console.log(ismousedown);
     if(runningGO && mode=="memory" && text<3) return;
     if(runningGO && ismousedown) {
    var pickResult = scene.pick(evt.clientX-getOffset(canvas).x, evt.clientY-getOffset(canvas).y);
 		if(allowclick) {} else {
     if(pickResult.pickedMesh) {
 	if(pickResult.pickedMesh.id.substr(0,4)=="box_") {
-//		console.log(pickResult.pickedMesh.id.substr(4));
+		//console.log(pickResult.pickedMesh.id.substr(4));
 		if(expect == pickResult.pickedMesh.id.substr(4)) {
 			    if(mode=="orig" || mode=="orig_r") {
                                  	 pickResult.pickedMesh.position.y=-0.5;
@@ -791,7 +711,11 @@ canvas.addEventListener("pointermove", function(evt) {
 				 fixTime(); expect--;
 				if(expect==0) {stopGO(); expect=25;}
 			    } else {
-				 fixTime(); expect++; if(mode=="react" && expect<26) box[expect].material=getRedMaterial();
+				 fixTime(); expect++; 
+				 if(mode=="react" && expect<26) {
+    if (box[expect].material) box[expect].material.dispose();
+    box[expect].material=getRedMaterial();
+}
 				if(expect==26) {stopGO(); expect=25;}
 			    }
 		}
@@ -806,9 +730,9 @@ canvas.addEventListener("pointerup", function (evt) {
     ismousedown=false;
 	if(runningGO) {
    var pickResult = scene.pick(evt.clientX-getOffset(canvas).x, evt.clientY-getOffset(canvas).y);
-
 		if(allowclick) {
 			if(mode=="orig" || mode=="orig_r") {
+				
 				if(pickResult.pickedMesh && pickResult.pickedMesh.id.substr(0,4)=="box_") pickResult.pickedMesh.position.y=0;
 				if(selectedondown && selectedondown.id.substr(0,4)=="box_") selectedondown.position.y=0;
 				if(oselectedondown && oselectedondown.id.substr(0,4)=="box_") oselectedondown.position.y=0;

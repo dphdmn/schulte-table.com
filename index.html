@@ -32,6 +32,7 @@
     <style type="text/css">
         body {
             background-color: black;
+			min-width: fit-content;
         }
         .box { display: block; }
         #box { overflow: hidden;position: relative; }
@@ -131,7 +132,7 @@ onResize();
 </script>
 
   <script type="text/javascript" src="loader.js"></script>
-  <div id="chart_div" style="position:absolute;top:340px;"></div>
+  <div id="chart_div" style="position:absolute;top:410px;transform: translateX(-50%);  width: 90%; max-width: 600px; "></div>
 <script>
 google.charts.load('current', {packages: ['corechart', 'bar']});
 //google.charts.setOnLoadCallback(drawDualY);
@@ -193,23 +194,19 @@ textStyle: {color: 'white', fontName: 'Arial', fontSize:12 }},
         chartN.draw(data, options);
     }
 </script>
-<center><table width=1% height=1% align=center><tr><td align=center valign=top>
+<center><table style="margin-top: 70px;" width=1% height=1% align=center><tr><td align=center valign=top>
 
         <table border=0  width=1% height=1%>
 <tr><td valign=top  bgcolor=black style=""> <!--border-right:1px solid #33334C;-->
 <div style="height:38px">
 <div class="btn-group"  role="group" aria-label="nav" style="width:450px;">
-<div class="btn-group" role="group" >
-    <button type="button" class="btn btn-default" onclick="topleftClick();" id=brand alt="Schulte Table" style="width:180px;">Schulte Table</button>
-</div>
+
 
 </div>
 </div>
         <canvas id="scoreCanvas" width="450" height="34"></canvas><br>
-	<canvas id="renderCanvas" style="width:450px;height:450px"></canvas><br><center>
-  <div id="hint_div" style="position:absolute;top:80px;display:none;color:black;width:450px"></div>
-
-  <div id="chart_div" style="position:absolute;top:340px;"></div>
+	<canvas id="renderCanvas" style="width:450px;height:450px;"></canvas><br><center>
+  <div id="hint_div" style="position:absolute;top:150px;display:none;color:black;width:450px;transform: translateX(-50%);"></div>
 </center><center>
 <div style="width:420px;display:none" align=left>
 <font color=lightgray>daily progress:</font>
@@ -228,7 +225,9 @@ textStyle: {color: 'white', fontName: 'Arial', fontSize:12 }},
     blockId: 'C-A-2302673-1'
   })
 })</script-->
-<table><tr><td><a href="donate.html" target="_blank" class='btn btn-default'>Donate</a></td><td style="color:gray">&nbsp;Donate to help maintain this site <br>&nbsp;and to keep it alive.</td></tr></table>
+<div class="btn-group" role="group" >
+    <button type="button" class="btn btn-default" onclick="topleftClick();" id=brand alt="Schulte Table" style="width:100%;">Schulte Table</button>
+</div>
 
             <br><br>
 <script src="js/audio.min.js"></script>
@@ -347,18 +346,11 @@ function topleftClick() {
 }
 
 </script>    
-</div>
-<tr><td>    		
+</div> 		
 </table></td>
 </tr>
-<tr><td>
-<!-- Put this div tag to the place, where the Comments block will be -->
-<!--div id="vk_comments"></div>
-<script type="text/javascript">
-VK.Widgets.Comments("vk_comments", {limit: 10, width: "520", attach: "*"});
-</script-->
 
-</table><BR><BR><BR><BR>
+</table>
     <script>
 var xmlhttp=false;
 /*@cc_on @*/
@@ -420,9 +412,12 @@ var TZ = encodeURIComponent(moment().format("Z"));
 
 </div>
 </table>
-    <div style="color:gray">
-        © 2014 <a href="mailto:mailgio@gmail.com" style="color:#444444;"><i>George Imnaishvili</a>
-    </div>
+<div style="color:gray; margin-top: 10px;transform: translateX(-50%);left:50%;position:relative">
+    You are playing on an unofficial offline fork of the game.
+    <table style="padding:5px"><tr><td style="color:gray; padding: 5px;">Support original developer (BTC Address):</td><tr><td style="color:gray; padding: 5px; user-select: text;">1PaS8fkunsRFvnmibg1BKFK2GSn8SvjfYU</td></tr>
+	</table>
+	© 2014 <a href="mailto:mailgio@gmail.com" style="color:gray;font-weight: bold">George Imnaishvili</a>
+</div>
         </center>
 </body>
 
