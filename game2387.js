@@ -228,12 +228,7 @@ function startGO() {
 	
 		// Prevent all scrolling, zooming, and panning
 	document.body.style.overflow = "hidden";
-	document.body.style.position = "fixed";
-	document.body.style.width = "100%";
-	document.body.style.height = "100%";
 	document.body.style.touchAction = "none";
-	document.body.style.userSelect = "none";
-	document.body.style.webkitUserSelect = "none";
 	document.body.style.webkitTouchCallout = "none";
 	document.body.style.overscrollBehavior = "none";
 	document.documentElement.style.overflow = "hidden";
@@ -307,11 +302,7 @@ function stopGO() {
   // Restore scrolling and zoom
 	document.body.style.overflow = "auto";
 	document.body.style.position = "";
-	document.body.style.width = "";
-	document.body.style.height = "";
 	document.body.style.touchAction = "";
-	document.body.style.userSelect = "";
-	document.body.style.webkitUserSelect = "";
 	document.body.style.webkitTouchCallout = "";
 	document.body.style.overscrollBehavior = "";
 	document.documentElement.style.overflow = "";
