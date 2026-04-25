@@ -238,6 +238,9 @@ function startGO() {
 	document.body.style.overscrollBehavior = "none";
 	document.documentElement.style.overflow = "hidden";
 	document.documentElement.style.touchAction = "none";
+	// Prevent double-tap zoom
+document.addEventListener('dblclick', preventZoom, false);
+document.addEventListener('click', preventDoubleTapZoom, false);
 	
 	// Prevent zoom via meta viewport
 	let viewportMeta = document.querySelector('meta[name="viewport"]');
@@ -290,6 +293,20 @@ function preventScroll(e) {
 	
 }
 
+var lastTouchEnd = 0;
+
+function preventZoom(e) {
+    e.preventDefault();
+}
+
+function preventDoubleTapZoom(e) {
+    var now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+        e.preventDefault();
+    }
+    lastTouchEnd = now;
+}
+
 function preventGesture(e) {
 	e.preventDefault();
 }
@@ -313,6 +330,8 @@ function stopGO() {
 	document.body.style.overscrollBehavior = "";
 	document.documentElement.style.overflow = "";
 	document.documentElement.style.touchAction = "";
+	ocument.removeEventListener('dblclick', preventZoom);
+document.removeEventListener('click', preventDoubleTapZoom);
 	
 	// Restore viewport
 	let viewportMeta = document.querySelector('meta[name="viewport"]');
