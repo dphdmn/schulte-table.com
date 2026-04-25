@@ -64,7 +64,7 @@ if (typeof window.personalBests === 'undefined') {
         let contentDiv = document.createElement("div");
         contentDiv.id = "scorePanelContent";
         contentDiv.style.padding = "6px 8px";
-        contentDiv.style.maxHeight = "400px";
+        contentDiv.style.maxHeight = "75px";
         contentDiv.style.overflowY = "auto";
         
         hideBtn.onclick = function() {
@@ -138,10 +138,6 @@ function printScoreToLeftSide(TZ, mode, fb_id, score, userName) {
     
     contentDiv.insertBefore(scoreEntry, contentDiv.firstChild.nextSibling);
     
-    // Limit entries
-    while (contentDiv.children.length > 51) {
-        contentDiv.removeChild(contentDiv.lastChild);
-    }
 }
 
 // Function to display PBs at the top of the log
