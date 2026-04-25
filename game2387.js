@@ -13,6 +13,7 @@ function refr(dosend) {
 		printScoreToLeftSide(TZ, mode, null, text, "anon");
 	}
 }
+document.oncontextmenu = () => false;
 
 
 
