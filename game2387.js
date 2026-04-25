@@ -874,7 +874,7 @@ if(!runningGO){
 var xfps=0;
 var doRender=true;
 var renderLoop = function () {
-	xfps++;	if(xfps>1000) xfps=1;
+	xfps++;	if(xfps>60) xfps=1;
 	if(!runningGO && !inaction){if(xfps == 1) doRender=true; else doRender=false;} else {if(xfps % 2 == 0) doRender=true; else doRender=false;}
 	if(doRender) {	engine.beginFrame();scene.render(); engine.endFrame();}
         if(runningGO) BABYLON.Tools.QueueNewFrame(renderLoop);
