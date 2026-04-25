@@ -316,7 +316,6 @@ function stopGO() {
 	document.body.style.overscrollBehavior = "";
 	document.documentElement.style.overflow = "";
 	document.documentElement.style.touchAction = "";
-	document.removeEventListener('dblclick', preventZoom);
 	
 	// Restore viewport
 	let viewportMeta = document.querySelector('meta[name="viewport"]');
