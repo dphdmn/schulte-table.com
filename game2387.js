@@ -234,15 +234,6 @@ function startGO() {
 	document.documentElement.style.overflow = "hidden";
 	document.documentElement.style.touchAction = "none";
 	
-	// Prevent zoom via meta viewport
-	let viewportMeta = document.querySelector('meta[name="viewport"]');
-	if (!viewportMeta) {
-		viewportMeta = document.createElement('meta');
-		viewportMeta.name = 'viewport';
-		document.head.appendChild(viewportMeta);
-	}
-	viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
-	
 	// Prevent pull-to-refresh and rubber-banding
 	document.addEventListener('touchmove', preventScroll, { passive: false });
 	document.addEventListener('gesturestart', preventGesture, false);
@@ -307,12 +298,6 @@ function stopGO() {
 	document.body.style.overscrollBehavior = "";
 	document.documentElement.style.overflow = "";
 	document.documentElement.style.touchAction = "";
-	
-	// Restore viewport
-	let viewportMeta = document.querySelector('meta[name="viewport"]');
-	if (viewportMeta) {
-		viewportMeta.content = 'width=device-width, initial-scale=1.0';
-	}
 	
 	// Remove event listeners
 	document.removeEventListener('touchmove', preventScroll);
