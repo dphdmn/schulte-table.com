@@ -238,8 +238,6 @@ function startGO() {
 	document.body.style.overscrollBehavior = "none";
 	document.documentElement.style.overflow = "hidden";
 	document.documentElement.style.touchAction = "none";
-	// Prevent double-tap zoom
-document.addEventListener('dblclick', preventZoom, false);
 	
 	// Prevent zoom via meta viewport
 	let viewportMeta = document.querySelector('meta[name="viewport"]');
@@ -294,9 +292,6 @@ function preventScroll(e) {
 
 var lastTouchEnd = 0;
 
-function preventZoom(e) {
-    e.preventDefault();
-}
 
 function preventGesture(e) {
 	e.preventDefault();
