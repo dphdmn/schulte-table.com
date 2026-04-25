@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+<!-- Mirrored from schulte-table.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 25 Apr 2026 02:26:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<title>Schulte Table Online Game - Upgrade Yourself!</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="Description" content="Schulte Table : see more, improve attention and performance finding and analyzing information, read fast"/>
+<meta name="Keywords" content="Schulte Table Online Game improve attention self-control distribution ability to focus fast reading performance" />    
+<meta property="og:title" content="Schulte Table" />
+<meta property="og:description" content="Schulte Table Online: see more, improve attention and performance finding and analyzing information, read fast" />
+<meta property="og:image" content="img/st.jpg" />
+<!--meta id="Viewport" name="viewport" content="width=device-width, initial-scale=0.445"-->
+<meta id="Viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.6, user-scalable=yes, target-densityDpi=device-dpi"/>
+
+
+<link rel="alternate" hreflang="x-default" href="index.html"> 
+<link rel="alternate" hreflang="ru" href="ru/index.html">
+<!--link rel="alternate" hreflang="en-us" href="http://schulte-table.com/"-->
+<link rel="shortcut icon" href="favicon.ico">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+<script src="hand.js"></script>
+    <script src="babylon.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <style type="text/css">
+        body {
+            background-color: black;
+        }
+        .box { display: block; }
+        #box { overflow: hidden;position: relative; }
+    </style>
+
+</head>
+
+<div onload="refr('no');" style="background-color:black;	-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;" align=center>
+
+<script>
+
+
+var choose_str="Choose one of the game modes to start: ";
+var mode_str="Mode:";
+var yourrecord_str="Your record:";
+var click_str="click here to start!";
+var brand_str="Schulte Table";
+var back_str="Back to Menu";
+var descr= [];
+descr["react"]="<font color=#AAAAAA size=5><b>"+mode_str+"Reaction</b></font><br><font color=white>Relax and Concentrate!<BR> Focus in the center box of the table.Try to see whole table.<BR><font color=yellow>Click on the red box as fast as you can.";
+descr["orig"]="<font color=#AAAAAA size=5><b>"+mode_str+"Classic</b></font><br><font color=white>Relax and Concentrate!<BR> Focus in the center box of the table. Try to see whole table.<BR><font color=yellow>Click on the numbers in ascending order from 1 to 25.";
+descr["orig_r"]="<font color=#AAAAAA size=5><b>"+mode_str+"Classic Reverse</b></font><br><font color=white>Relax and Concentrate!<BR> Focus in the center box of the table. Try to see whole table. <BR><font color=yellow>Click on the numbers in descending order from 25 to 1.";
+descr["light"]="<font color=#AAAAAA size=5><b>"+mode_str+"Classic Light</b></font><br><font color=white>Relax and Concentrate!<BR> Focus in the center box of the table. Try to see whole table.<BR><font color=yellow>Click on the numbers in ascending order from 1 to 25.";
+descr["light_r"]="<font color=#AAAAAA size=5><b>"+mode_str+"Classic Light Reverse</b></font><br><font color=white>Relax and Concentrate!<BR> Focus in the center box of the table. Try to see whole table.<BR><font color=yellow>Click on the numbers in descending order from 25 to 1.";
+descr["memory"]="<font color=#AAAAAA size=5><b>"+mode_str+"Memory</b></font><br><font color=white><font color=yellow>After start you will have 3 seconds to remember location of as many numbers as you can and after that numbers will dissapear, click on the boxes in ascending order from 1 to 25.<BR> if you click wrong box, number will appear for 3 seconds.";
+var register_str="you can enter email address to be able to restore password.<br> <input type=input id='email' class='span4' name='email' placeholder='Email'><br><a data-toggle='modal' href='#' onclick='register();' class='btn btn-primary btn-large' id=register >REGISTER</a>";
+var mode = "home";
+var fb_id="";
+var fb_name="";
+var is_fb = false;
+function onResize2() {
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+  var ww = ( $(window).height() < window.screen.height ) ? $(window).height() : window.screen.height; //get proper width
+  var mw = 650; //34 min width of site
+  var ratio =  (ww / mw); //calculate ratio
+  if( ww < mw){ //smaller than minimum size
+   $('#Viewport').attr('content', 'initial-scale=' + ratio + ', maximum-scale=' + ratio*2 + ', minimum-scale=' + ratio/2 + ', user-scalable=yes, height=' + ww);
+  }else{ //regular size
+   $('#Viewport').attr('content', 'initial-scale=' + ratio + ', maximum-scale=' + ratio*2 + ', minimum-scale=' + ratio/2 + ', user-scalable=yes, height=' + ww);
+  }
+}
+}
+function moveChart() {
+	if(typeof chart_div != 'undefined') {
+		chart_div.style.left = document.getElementById('renderCanvas').getBoundingClientRect().left+window.scrollX+'px';
+		document.getElementById("hint_div").style.left = document.getElementById('renderCanvas').getBoundingClientRect().left+window.scrollX+"px";
+       }
+}
+function onResize() {
+
+}
+
+
+window.addEventListener("resize", onResize);
+window.addEventListener("scroll", onResize);
+onResize();
+  function statusChangeCallback(response) {
+    fblb.style.display="none";
+    if (response.status === 'connected') {
+//      is_fb=true;
+//      if(response.id == 'undefined') fb_id=""; else fb_id=response.id;
+//      fb_name=response.name;
+	loginbut.style.display="none";
+	logoutbut.style.display="none";
+      testAPI();
+    } else if (response.status === 'not_authorized') { //loged in but not in schulte-table game
+//      is_fb=false;
+      fb_name="";
+      fb_id="";
+	if("Anonymous"=="Anonymous") {
+		userdiv.innerHTML="Anonymous";
+		loginbut.style.display="inline";
+	} else {
+		userdiv.innerHTML="Anonymous";
+		logoutbut.style.display="inline";
+
+	}
+      refr("no");
+
+
+    } else {
+//      is_fb=false;
+      fb_name="";
+      fb_id="";
+	if("Anonymous"=="Anonymous") {
+		userdiv.innerHTML="Anonymous";
+		loginbut.style.display="inline";
+	} else {
+		userdiv.innerHTML="Anonymous";
+		logoutbut.style.display="inline";
+	}
+      refr("no");
+
+    }
+  }
+
+</script>
+
+  <script type="text/javascript" src="../www.gstatic.com/charts/loader.js"></script>
+  <div id="chart_div" style="position:absolute;top:340px;"></div>
+<script>
+google.charts.load('current', {packages: ['corechart', 'bar']});
+//google.charts.setOnLoadCallback(drawDualY);
+var data;
+var chartN;
+var options;
+function drawDualY() {
+      data = new google.visualization.DataTable();
+      data.addColumn('number', 'Number');
+      data.addColumn('number', 'time');
+
+      data.addRows([
+	[1,0],
+	[2,0],
+	[3,0],
+	[4,0],
+	[5,0],
+	[6,0],
+	[7,0],
+	[8,0],
+	[9,0],
+	[10,0],
+	[11,0],
+	[12,0],
+	[13,0],
+	[14,0],
+	[15,0],
+	[16,0],
+	[17,0],
+	[18,0],
+	[19,0],
+	[20,0],
+	[21,0],
+	[22,0],
+	[23,0],
+	[24,0],
+	[25,0]
+      ]);
+
+      options = {
+width:450,
+hAxis: {textStyle: {color: 'white', fontName: 'Arial', fontSize:12 }},
+vAxis: {title: "Time spent to find",
+titleTextStyle:
+      {
+	color: "white",
+         fontName: "Arial",
+         fontStyle: "normal" //or bold, italic, etc.
+      },
+textStyle: {color: 'white', fontName: 'Arial', fontSize:12 }},
+	backgroundColor: "transparent",
+        legend: {position: 'none'}
+      };
+
+      chartN = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+	for(key in arrTime) {
+		      data.setValue(parseInt(key)-1, 1 , arrTime[key]);
+	}
+        chartN.draw(data, options);
+    }
+</script>
+<center><table width=1% height=1% align=center><tr><td align=center valign=top>
+
+        <table border=0  width=1% height=1%>
+<tr><td valign=top  bgcolor=black style=""> <!--border-right:1px solid #33334C;-->
+<div style="height:38px">
+<div class="btn-group"  role="group" aria-label="nav" style="width:450px;">
+<div class="btn-group" role="group" >
+    <button type="button" class="btn btn-default" onclick="topleftClick();" id=brand alt="Schulte Table" style="width:180px;">Schulte Table</button>
+</div>
+
+</div>
+</div>
+        <canvas id="scoreCanvas" width="450" height="34"></canvas><br>
+	<canvas id="renderCanvas" style="width:450px;height:450px"></canvas><br><center>
+  <div id="hint_div" style="position:absolute;top:80px;display:none;color:black;width:450px"></div>
+
+  <div id="chart_div" style="position:absolute;top:340px;"></div>
+</center><center>
+<div style="width:420px;display:none" align=left>
+<font color=lightgray>daily progress:</font>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="0" id="percentdiv" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
+</div>
+</div>
+<div id=progresstable></div>
+</div>
+            <br>
+<!-- Yandex Native Ads C-A-2302673-1 
+<div id="yandex_rtb_C-A-2302673-1"></div>
+<script>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.renderWidget({
+    renderTo: 'yandex_rtb_C-A-2302673-1',
+    blockId: 'C-A-2302673-1'
+  })
+})</script-->
+<table><tr><td><a href="donate.html" target="_blank" class='btn btn-default'>Donate</a></td><td style="color:gray">&nbsp;Donate to help maintain this site <br>&nbsp;and to keep it alive.</td></tr></table>
+
+            <br><br>
+<script src="js/audio.min.js"></script>
+    <script>
+      var arad = audiojs;
+      arad.events.ready(function() {
+        var arad1 = arad.createAll();
+      });
+    </script>
+
+	</td><td bgcolor=black align=center  valign=top>
+
+<table bgcolor=black> <tr><td valign=top align=left id=cont style="display:none">
+<div class="container">
+<BR>
+<table valign=top><tr><td valign=top>&nbsp;&nbsp;<td valign=top style="color:white">
+
+<div style="color: white">
+<B>Schulte-Table.com</B> - is online game, that contains most powerful tools to upgrade your brain abilities based on Schulte table, and other methods to train your brain.
+<BR>
+While training, you have to be relaxed and concentrated!
+<BR>
+Focus on the center of the table, try to see whole table while playing and try also not to move your eyes while searching numbers and clicking on them.
+<BR>
+<b>Click on boxes from 1 to 25 (or in reversed order) as fast as you can. In Reaction mode click on red box.</b>
+<BR>
+For even better results - you have to treat this game as daily meditation practice.
+<BR>
+I also recommend you while playing listen to special music for meditation, you can listen to radio for meditation right here. (click play button in buttom left corner)
+<!--. or click here:
+<a href=# class='btn btn-primary' onclick='arad.playpause();'>turn meditation radio ON</a>
+<BR-->
+
+<BR>
+
+After training each day:
+<li>	soon you will find out that you can concentrate on things very fast;
+<li>	after months - you will be able to  find and analyze information much faster;
+<li>	after 1 year of training you will be surprised, how everything comes easily to you.
+<BR>
+        <a href="donate.html" target="_blank" class='btn btn-default'>Donate</a> - Donate to help maintain this site and to leave it free for everyone.
+        <BR>
+
+        <BR>
+It is never late to start!
+<BR>
+
+p.s. I prefer to use mouse in my training, you can also use touch-screen but I don’t like when fingers are preventing me seeing all the table.
+<BR>
+Also there is myth that Schulte Table must be played only statically without clicking anything, this is wrong, because if your goal is to upgrade yourself, be more productive, find and analyze information much faster, improve attention and performance, then statically Schulte Table will not help, it will only increase your vision area that this version of Schulte Table can do also.
+<BR>
+For example:
+<BR>
+<li>If you are googling something you don’t just stare at your screen, you type and click, find and click, and after working out here you would be able to do it much faster.
+<BR>
+<li>If you are programmer, you will be able to see more of your code at once, find functions, procedures, classes, needed information in documentation much faster and be more productive.
+<BR>
+<li>Even if you are gamer, this training will help you to be faster, see sharp more area of the screen, you will get more frags and headshots :).
+<BR>
+<li>and much more...
+<BR>
+<B>How to train:</B>
+in the left buttom corner you will find your daily progress, every day minimum is to make it 100%. 
+<BR>
+if you want to make progress in your training you have to play all modes of the game: Reaction, Classic Light, Classic Light Reverse, Classic Original, Classic Original Reverse and Memory.
+<BR>
+also after playing month or more, you can try to beat your previous month's score(see chart below score tables): 
+<a href="#" onclick="navchart.click();" class='btn btn-default'><img src="img/pie.png"/> score & chart </a>
+<BR>
+
+daily progress is counting so:
+<BR>
+if you are beginner and you don’t have results in result-table  on the right of screen, then first 2 lessons you have to play 5 times all modes:
+<li>Reaction
+<li>Classic Light
+<li>Classic Light Reverse
+<li>Classic Original
+<li>Classic Original Reverse
+<li>Memory
+<BR>
+(each must take less than 60 sec, but if 60 sec isn't enough for you than don't worry, you soon will be able to solve it much faster), so on the beginning of third lesson you will have 10 lines on each of your result table.
+<li>	now you try to play until you will score top 10 2 times - this till you will get total 40 lines of play
+<li>	now you try to play until you will score top 10 1 times till 100 lines of play
+<li>	after you try play till you will score top 25 1 time each game - this till you will get 140 lines of play
+<li>	after you try play till you will score top 50 1 time each game - this till you will get total 300 lines of play
+<li>	after that and till end you will have to score top 100 each game
+
+</div>
+</table>
+</div>
+<td width=100%>
+&nbsp;
+<script type="text/javascript">
+$("#windowTitleDialog").keypress(function(e) {
+    if ((e.keyCode == 13) && (e.target.type != "textarea")) {
+      e.preventDefault();
+	login('login');
+    }
+});
+</script>
+<script type="text/javascript">
+
+if(mode!="home"){
+    $(window).load(function(){
+        $('#windowTitleDialog').modal('show');
+    });
+}
+</script> 
+ 
+<script type="text/javascript">
+var text = 0;
+function topleftClick() {
+  text=0;
+  mode="home";
+  stopGO();
+}
+
+</script>    
+</div>
+<tr><td>    		
+</table></td>
+</tr>
+<tr><td>
+<!-- Put this div tag to the place, where the Comments block will be -->
+<!--div id="vk_comments"></div>
+<script type="text/javascript">
+VK.Widgets.Comments("vk_comments", {limit: 10, width: "520", attach: "*"});
+</script-->
+
+</table><BR><BR><BR><BR>
+    <script>
+var xmlhttp=false;
+/*@cc_on @*/
+/*@if (@_jscript_version >= 5)
+ try {  xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {  try {   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");  } catch (E) {   xmlhttp = false;  } }
+@end @*/
+if (!xmlhttp && typeof XMLHttpRequest!='undefined') {	try {		xmlhttp = new XMLHttpRequest();	} catch (e) {		xmlhttp=false;	}}if (!xmlhttp && window.createRequest) {	try {		xmlhttp = window.createRequest();	} catch (e) {		xmlhttp=false;	}}
+
+function openregbut() {	document.getElementById("logininfdiv").innerHTML = register_str;}
+function openlogin() {	document.getElementById("logininfdiv").innerHTML = "";
+//        $('#windowTitleDialog').modal('show');
+}
+function register() {	login('register');}
+
+var ip = "";
+//var ip = window.location.href.split("/")[2];
+var TZ = encodeURIComponent(moment().format("Z"));
+</script>
+
+<script type="text/javascript" src="game2387.js?1005"></script>
+		<div>
+			<div id="windowTitleDialog"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal" id=closeloginw>&times;</a>
+<legend>Please Sign In</legend>
+					</div>
+				<div class="modal-body">
+					<div class="divDialogElements">
+			
+          	<div class="alert alert-error">
+                <a class="close" data-dismiss="alert" href="#">?</a>
+                <!--Click "f-facebook log in" to use your facebook user to log in.<br> if you don't have facebook,-->
+                Enter user and password which you want to use and click "OK".
+                <br>Press "x" to play without statistics and tasks, as Anonymous.</div>
+			<form method="POST" action="#" accept-charset="UTF-8" id=lform>
+			<input type="text" id="username" class="span4" name="username" placeholder="Username"><br>
+			<input type="password" id="password" class="span4" name="password" placeholder="Password">
+            <!--label class="checkbox">        	<input type="checkbox" name="remember" value="1"> Remember Me          </label-->
+	    <div id=logininfdiv></div>
+			</form>    
+						</div>
+						</div>
+                                                				<div class="modal-footer">
+					<!--a href="#" class="btn" onclick="document.getElementById('closeloginw').click();">Cancel</a-->
+					<a href="#" class="btn btn-primary" onclick="openregbut();this.style='display:none'">REGISTER</a>
+					<a href="#" class="btn btn-primary" onclick="login('login');">OK</a>
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState(true); "></fb:login-button>
+
+					</div>
+				</div>
+			<div class="divButtons">
+				
+				</div>
+					</div>
+				</div>
+			</div>
+
+</div>
+</table>
+    <div style="color:gray">
+        © 2014 <a href="mailto:mailgio@gmail.com" style="color:#444444;"><i>George Imnaishvili</a>
+    </div>
+        </center>
+</body>
+
+</html>
