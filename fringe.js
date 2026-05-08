@@ -21,7 +21,7 @@ document.oncontextmenu = () => false;
 // Load PBs from localStorage
 if (typeof window.personalBests === 'undefined') {
     window.personalBests = {};
-    let saved = localStorage.getItem("scorePBs");
+    let saved = localStorage.getItem("scorePBs_fringe");
     if (saved) {
         window.personalBests = JSON.parse(saved);
     }
@@ -90,7 +90,7 @@ if (typeof window.personalBests === 'undefined') {
 
 // Save PBs to localStorage
 function savePBs() {
-    localStorage.setItem("scorePBs", JSON.stringify(window.personalBests));
+    localStorage.setItem("scorePBs_fringe", JSON.stringify(window.personalBests));
 }
 
 // Function to print scores on the left side
